@@ -1,8 +1,8 @@
 import { Password } from './../password';
-import { BadRequestError } from './../bad-request-error';
+import { BadRequestError } from '@johnbutler/common';
 import express, { Request, Response} from 'express';
 import { body } from 'express-validator';
-import { validateRequest } from '../middlewares/validate-request';
+import { validateRequest } from '@johnbutler/common';
 import { User } from '../models/user';
 import jwt from 'jsonwebtoken';
 

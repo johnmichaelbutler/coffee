@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
-import { CurrentUserContext } from '../context/current-user-context';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Header() {
-  const currentUser = useContext(CurrentUserContext);
-
+const Header = ({ currentUser }) => {
+  console.log(currentUser);
   const links = [
-    !currentUser && { label: 'Sign Up', href: '/signup' },
-    !currentUser && { label: 'Sign In', href: '/signin' },
+    currentUser && { label: 'Sign Up', href: '/signup' },
+    currentUser && { label: 'Sign In', href: '/signin' },
     currentUser && { label: 'Sign Out', href: '/signout' },
   ]
     // Filter out all non-truthy values
@@ -17,7 +15,7 @@ function Header() {
         <li key={href} className="">
           <Link
             to={href}
-            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
+            className="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-black mr-4"
           >
             {label}
           </Link>
@@ -28,7 +26,9 @@ function Header() {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-gray-500 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <span className="font-semibold text-xl tracking-tight">Coffee</span>
+        <Link to="/" className="font-semibold text-xl tracking-tight">
+          Coffee House
+        </Link>
       </div>
       <div className="block lg:hidden">
         <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
@@ -43,10 +43,12 @@ function Header() {
         </button>
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-        <ul className="text-sm lg:flex-grow">{links}</ul>
+        <ul className="text-sm lg:flex-grow flex-row justify-around">
+          {links}
+        </ul>
       </div>
     </nav>
   );
-}
+};
 
 export default Header;

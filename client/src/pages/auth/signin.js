@@ -1,12 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useRequest } from '../../hooks/use-request';
-import { CurrentUserContext } from '../../context/current-user-context';
+import { useHistory } from 'react-router-dom';
 
 function SignInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const currentUser = useContext(CurrentUserContext);
+  let location = useHistory();
 
   const { doRequest, errors } = useRequest({
     url: '/api/users/signin',
@@ -15,7 +14,7 @@ function SignInPage() {
       email,
       password,
     },
-    onSuccess: () => console.log('Success!'),
+    onSuccess: () => location.push('/'),
   });
 
   const onSubmit = async (e) => {
@@ -23,7 +22,6 @@ function SignInPage() {
     await doRequest();
   };
 
-  console.log('Current User from signin', currentUser);
   return (
     <div className="w-50 mx-0 container">
       <h1 className="text-3xl text-center">Sign In Page</h1>
