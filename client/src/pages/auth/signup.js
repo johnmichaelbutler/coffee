@@ -1,9 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useRequest } from '../../hooks/use-request';
+import { useHistory } from 'react-router-dom';
 
 function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  let location = useHistory();
 
   const { doRequest, errors } = useRequest({
     url: '/api/users/signup',
@@ -12,7 +14,7 @@ function SignUpPage() {
       email,
       password,
     },
-    onSuccess: () => console.log('Success!'),
+    onSuccess: () => location.push('/'),
   });
 
   const onSubmit = async (e) => {

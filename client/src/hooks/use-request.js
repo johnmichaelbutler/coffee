@@ -13,16 +13,16 @@ const useRequest = ({ url, method, body, onSuccess }) => {
       }
       return response.data;
     } catch (error) {
-      setErrors(
-        <div className="alert alert-danger">
-          <h4>Oooops....</h4>
-          <ul className="my-0">
-            {error.response.data.errors.map((err) => (
-              <li key={err.message}>{err.message}</li>
-            ))}
-          </ul>
-        </div>
-      );
+      // setErrors(
+      //   <div className="alert alert-danger">
+      //     <h4>Oooops....</h4>
+      //     <ul className="my-0">
+      //       {error.response.data.errors.map((err) => (
+      //         <li key={err.message}>{err.message}</li>
+      //       ))}
+      //     </ul>
+      //   </div>
+      // );
       console.log(error);
     }
   };

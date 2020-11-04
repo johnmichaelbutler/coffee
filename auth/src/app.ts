@@ -7,7 +7,7 @@ import { currentUserRouter } from './routes/current-user';
 import { signInRouter } from './routes/signin';
 import { signUpRouter } from './routes/signup';
 import { signOutRouter } from './routes/signout';
-import { errorHandler } from './error-handler';
+import { errorHandler } from '@johnbutler/common';
 
 const app = express();
 app.use(json());
